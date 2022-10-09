@@ -1,0 +1,82 @@
+div.rows {
+    display:flex;
+    flex-direction:row;
+}
+
+a.acc-box {
+    background-color:lightgrey;
+    border:1px solid darkgrey;
+    border-radius:1em;
+
+    height:100px;
+    width:clamp(10em, 20vw, 15em);
+    margin:1em;
+
+    text-decoration:none;
+    color:black;
+    font-weight:bolder;
+    text-transform:uppercase;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    transition:background-color 100ms ease-in-out;
+}
+
+a.acc-box:hover {
+    background-color:#eeeeee;
+}
+
+a.acc-box:active {
+    background-color:gray;
+}
+
+a.danger {
+    background-color:crimson;
+    border-color:darkred;
+    color:white;
+}
+
+a.danger:hover {
+    background-color:darkred;
+}
+
+@media screen and (max-width:900px) {
+    div.rows{
+        flex-direction:column;
+    }
+
+    a.acc-box {
+        width:15em;
+        font-size:clamp(2pt, 3vw, 12pt);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    a.acc-box {
+        background-color:var(--verydarkgrey);
+        border:1px solid black;
+        border-radius:1em;
+        color:white;
+    }
+    a.acc-box:hover {
+        background-color:var(--hoverdark);
+    }
+
+    a.danger {
+        background-color:darkred;
+        border-color:#660000;
+        color:white;
+    }
+    
+    a.danger:hover {
+        background-color:crimson;
+    }
+
+    a.acc-box:active {
+        background-color:var(--activedark);
+    }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        {% load static %}
+        <title>Site Registration</title>
+        <!-- Responsive design - autoscaling (keep it simple!) -->
+        <meta name="viewport" content= "width=device-width, initial-scale=1.0" />
+        <!-- <link rel="icon" href={% static 'favicon.ico' %} /> -->
+        <link rel="stylesheet" href={% static 'style.css' %} />
+        {% block stylesheets %} {% endblock %}
+
+    </head>
+
+    <body>
+        <div id="nav">
+            <div id="nav_left">
+                <h1><a class="title" href="/">Site Registration</a></h1>
+            </div>
+            <div id="nav_right">
+                {% if logged_in %}
+                    <a class="nav" href="/logout">Logout</a>
+                {% else %}
+                    <a class="nav" href="/login">Login</a>
+                    <a class="nav" href="/register">Register</a>
+                {% endif %}
+                <a class="nav" href="/sitecontacts">Site Contacts</a>
+            </div>
+            
+        </div>
+
+        <!-- Empty div to separate the header (offset by the height of the header) -->
+        <div id="navoffset"></div>
+
+        <div id="content">
+            <!-- Display flash messages first -->
+            {% for i in messages %}
+                {% if i.tags == "error" or i.tags == "success" %}
+                <div class={{i.tags}}>{{i}}</div>
+                {% endif %}
+            {% endfor %}
+
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <script src={% static 'script.js' %}></script>
+        {% block scripts %}
+        {% endblock %}
+    </body>
+</html>

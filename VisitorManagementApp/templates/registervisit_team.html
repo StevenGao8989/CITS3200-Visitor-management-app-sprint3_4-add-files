@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+{% load static %}
+<link rel="stylesheet" href={% static 'basicforms.css' %} />
+<style>
+    div.teamcontainer {
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+        border-bottom:black 2px solid;
+    }
+    @media (prefers-color-scheme: dark) {
+        div.teamcontainer{border-bottom-color:white;}
+    }
+    div.teamcontainer > * {
+        margin:3px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-bordered">
+    <h1>Register a visit for your team</h1>
+    <a href="/account">Back to Account</a>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="container-bordered">
+        <h2>Enter the visit details for all your team members here.</h2>
+        {% for field in visit_form.visible_fields %}
+            {{field.label}}
+            <br />
+            {{field}}
+            {{field.help_text}}
+            {{field.errors}}
+        <br />
+        {% endfor %}
+    </div>
+
+    <div class="container-bordered">
+        {{ team_form.management_form}}
+        {% for member in team_form %}
+            <div class="teamcontainer">
+                <h2>Enter personal details for one new team member here:</h2>
+                {% for field in member.visible_fields %}
+                    {{field.label}}
+                    <br />
+                    {{field}}
+                    {{field.help_text}}
+                    {{field.errors}}
+                    <br />
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="container-bordered">
+        <h2>Submit the form here.</h2>
+        <input type="submit" value="Submit"/>
+    </div>
+</form>
+
+{% endblock %}
+
+{% block scripts %}
+<script src={% static 'registervisit.js' %}></script>
+{% endblock %}

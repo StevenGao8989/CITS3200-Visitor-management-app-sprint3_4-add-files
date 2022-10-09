@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+{% load static %}
+<link rel="stylesheet" href={% static 'basicforms.css' %} />
+{% endblock %}
+
+{% block content %}
+
+<div class="container-bordered">
+    <h1>Log a new visit - {{site}}</h1>
+    {% if logged_in %}
+    <a href="/account">Back to Account</a>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+        {{field.label}}
+        <br />
+        {{field}}
+        {{field.help_text}}
+        {{field.errors}}
+        <br />
+        {% endfor %}
+        <input type="submit" value="Log new visit and inform site manager" />
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src={% static 'registervisit.js' %}></script>
+{% endblock %}

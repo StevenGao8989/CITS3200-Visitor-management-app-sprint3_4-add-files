@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style> /* For e-mail HTML, all styles must be embedded into the document */
+            * {
+                font-family:"Arial";
+            }
+
+            p {
+                font-size:large; /* For mobile phones */
+            }
+
+            body {
+                background-color:lightgrey;
+            }
+
+            :root {
+                --uwa-blue:#27348b;
+                --uwa-yellow:#e2b600;
+            }
+            
+            table, th, tr {
+                border-collapse:collapse;
+                border:1px solid gray;
+            }
+
+            div.main {
+                background-color:white;
+                padding:0px;
+                margin:auto;
+
+                max-width:50em;
+                justify-self:center;
+            }
+
+            div.header {
+                top:0px;
+                left:0px;
+                background-color:var(--uwa-blue);
+                border-top:5px solid var(--uwa-yellow);
+                height:5em;
+            }
+
+            div.header > h1 {
+                color:white;
+                text-align:center;
+            }
+
+            div.submain {
+                padding:1em;
+                margin:1em;
+            }
+
+            div.em {
+                border:1px solid crimson;
+                border-radius:1em;
+                padding: 0.5em 1em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- This template is not supposed to be rendered anywhere on the server
+        except on the e-mail notification sent to the site manager -->
+        <!-- Adapted from askUWA's template -->
+        <div class="main">
+            <div class="header">
+                <h1>New visitor at {{site}}</h1>
+            </div>
+            <div class="submain">
+            <p>Dear {{site}} site manager,</p>
+            <p><b>{{visitorname}}</b> just entered <b>{{site}}</b> at <b>{{arrival}}</b>.</p>
+            <p>They are a <b>{{role}}</b>.</p>
+            <p>They intend to leave at <b>{{departure}}</b>.</p>
+
+            {% if ridgefield_paddock %} 
+            <p>They intend to stay at the following paddock: <b>{{ridgefield_paddock}}</b></p>
+            {% endif %}
+                
+            <div class="em">
+                <p>Emergency contact information for {{visitorname}} is as follows:</p>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Emergency Contact Name:</th>
+                            <td>{{emname}}</td>
+                        </tr>
+                        <tr>
+                            <th>Emergency Contact Phone Number:</th>
+                            <td><a href="{{'tel:'|add:emphone}}">{{emphone}}</a></td>
+                        </tr>
+                        <tr>
+                            <th>Relationship to the visitor:</th>
+                            <td><a>{{emrelation}}</a></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+            <!-- Below currently does not work -- does anyone have ideas to link dynamically to the site manager page (maybe contact the client)? -->
+            <!-- <p><a href="{% url 'admin:index' %}">Click here</a> for more details</p> -->
+            <p><i>This is an auto-generated notification. The inbox of this notification service is not monitored.</i></p>
+            </div>
+
+            
+        </div>
+    </body>
+</html>

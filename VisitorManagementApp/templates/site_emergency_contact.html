@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link href={% static 'table.css' %} rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container-bordered">
+    <h1>Gingin Site Emergency Contacts</h1>
+
+    <table>
+        <tr>
+            <th> Name </th>
+            <th> Phone number </th>
+            <th> Site </th>
+            <th> Position/Organisation </th>
+        </tr>
+
+        {% for contact in contacts %}
+        <tr>
+            <td> {{ contact.name }} </td>
+            {% with phone_link='tel:'|add:contact.phone%}
+            <td> <a href="{{ phone_link }}" >{{ contact.phone }} </a></td>
+            {% endwith %}
+            <td> {{ contact.site }} </td>
+            <td> {{ contact.position }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+{% endblock %}

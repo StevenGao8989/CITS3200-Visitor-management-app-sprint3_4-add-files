@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+{% load static %}
+<link rel="stylesheet" href={% static 'basicforms.css' %} />
+{% endblock %}
+
+{% block content %}
+
+<div class="container-bordered">
+    <h1>Bye, {{name}}.</h1>
+    <p>Deletion is permanent and you will have to create a new account
+        to store your details again.
+    </p>
+    <a href="/account">Back to Account</a>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete my account" />
+</form>
+</div>
+
+{% endblock %}

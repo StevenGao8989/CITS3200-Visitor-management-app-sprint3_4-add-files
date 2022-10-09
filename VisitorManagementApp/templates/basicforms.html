@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+{% load static %}
+<link rel="stylesheet" href={% static 'basicforms.css' %} />
+{% endblock %}
+
+{% block content %}
+
+<div class="container-bordered">
+    <h1>{{title}}</h1>
+    <p>{{desc}}</p>
+    {% if logged_in %}
+    <a href="/account">Back to Account</a>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+        {{field.label}}
+        <br />
+        {{field}}
+        {{field.help_text}}
+        {{field.errors}}
+        <br />
+        {% endfor %}
+        <input type="submit" value="{{submit_button_value}}" />
+</form>
+</div>
+
+{% endblock %}

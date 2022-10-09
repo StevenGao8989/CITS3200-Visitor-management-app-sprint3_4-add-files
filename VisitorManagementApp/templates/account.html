@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+{%load static%}
+<link rel="stylesheet" href={% static 'account.css' %} />
+{% endblock %}
+
+{% block content %}
+<div class="container-bordered">
+<h1>Hello, {{name}}!</h1>
+    <div class="rows">
+        <a class="acc-box" href="/transitionpage">New visit</a>
+        <a class="acc-box" href="/bulkregister">Team visit</a>
+        <a class="acc-box" href="/changeemergency">Modify emergency contact</a>
+        
+    </div>
+    <div class="rows">
+        <a class="acc-box" href="/changedetails">Modify details</a>
+        <a class="danger acc-box" href="/deleteaccount">Delete account</a>
+        <a class="acc-box" href="/password">Change password</a>
+    </div>
+    
+
+
+</div>
+{% endblock %}

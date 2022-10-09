@@ -1,0 +1,23 @@
+:root {
+    --gingin-background:url("https://www.uwa.edu.au/-/media/Project/UWA/UWA/UWA-Corporate/Hero/Research/Gingin-Gravity-Precinct/Gingin-Gravity-Precinct-hero-1776-568.jpg");
+    --ridgefield-background:url('https://www.uwa.edu.au/institutes/institute-of-agriculture/-/media/UWA-Institute-of-Agriculture/Short-header/Desktop/UWA-Farm-Ridgefield-granite-boulders_brighter-1920_x_432.jpg');
+    --background-attenuation:50%;
+}
+
+.gingin, .ridgefield {
+    color:white !important;
+}
+
+.gingin {
+    background:var(--gingin-background);
+    background-size:cover;
+}
+
+.ridgefield {
+    background:var(--ridgefield-background);
+    background-size:cover;
+}
+
+.gingin:active, .ridgefield:active {
+    filter:brightness(var(--background-attenuation)) !important;
+}
